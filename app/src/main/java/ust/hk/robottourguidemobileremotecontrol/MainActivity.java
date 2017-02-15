@@ -9,23 +9,24 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    @BindView(R.id.fBtn) Button f;
-    @BindView(R.id.lBtn) Button l;
-    @BindView(R.id.bBtn) Button b;
-    @BindView(R.id.rBtn) Button r;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Button f= (Button) findViewById(R.id.fBtn);
+        Button l= (Button) findViewById(R.id.lBtn);
+        Button b= (Button) findViewById(R.id.bBtn);
+        Button r= (Button) findViewById(R.id.rBtn);
+        f.setOnClickListener(this);
+        l.setOnClickListener(this);
+        b.setOnClickListener(this);
+        r.setOnClickListener(this);
     }
 
     @Override
@@ -35,52 +36,112 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.fBtn:
                 ApiClient.moveForward().enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-                        Toast.makeText(MainActivity.this,"Forward movement failed!",Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call call, final IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Forward movement failed!",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 });
                 break;
             case R.id.lBtn:
                 ApiClient.moveLeft().enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-                        Toast.makeText(MainActivity.this,"Left movement failed!",Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call call, final IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Left movement failed!",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 });
                 break;
             case R.id.bBtn:
                 ApiClient.moveBack().enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-                        Toast.makeText(MainActivity.this,"Back movement failed!",Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call call, final IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Back movement failed!",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 });
                 break;
             case R.id.rBtn:
                 ApiClient.moveRight().enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-                        Toast.makeText(MainActivity.this,"Right movement failed!",Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call call, final IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Right movement failed!",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 });
                 break;
