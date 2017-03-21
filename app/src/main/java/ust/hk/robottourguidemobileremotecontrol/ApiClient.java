@@ -10,7 +10,7 @@ import okhttp3.Request;
 
 public class ApiClient {
 
-    private static final String baseUrl= "10.89.22.206";
+    private static final String baseUrl= "10.20.141.114";
     private static final int port=8000;
 
     public static Call moveForward()
@@ -62,6 +62,20 @@ public class ApiClient {
                 .host(baseUrl)
                 .port(port)
                 .addPathSegment("right")
+                .build();
+        Request request= new Request.Builder()
+                .get()
+                .url(httpUrl)
+                .build();
+        return OkHttpSingleton.getOkHttpInstance().getOkHttpClient().newCall(request);
+    }
+    public static Call stop()
+    {
+        HttpUrl httpUrl= new HttpUrl.Builder()
+                .scheme("http")
+                .host(baseUrl)
+                .port(port)
+                .addPathSegment("stop")
                 .build();
         Request request= new Request.Builder()
                 .get()

@@ -16,24 +16,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fBtn" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/sBtn"
+        android:layout_below="@id/fBtn"
+        android:text="Stop"
+        android:background="@android:color/holo_red_light"/>
    <Button
         android:text="Back"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/fBtn"
+        android:layout_below="@id/sBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bBtn" />
     <Button
         android:text="Rotate Right"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_toRightOf="@id/fBtn"
+        android:layout_marginTop="48dp"
+        android:layout_toRightOf="@id/sBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rBtn" />
     <Button
         android:text="Rotate Left"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_toLeftOf="@id/fBtn"
+        android:layout_marginTop="48dp"
+        android:layout_toLeftOf="@id/sBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lBtn" />

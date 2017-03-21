@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button l= (Button) findViewById(R.id.lBtn);
         Button b= (Button) findViewById(R.id.bBtn);
         Button r= (Button) findViewById(R.id.rBtn);
+        Button s= (Button) findViewById(R.id.sBtn);
         f.setOnClickListener(this);
         l.setOnClickListener(this);
         b.setOnClickListener(this);
@@ -125,6 +126,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void run() {
                                 Toast.makeText(MainActivity.this,"Right movement failed!",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Toast.makeText(MainActivity.this,response.body().string(),Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+                break;
+            case R.id.sBtn:
+                ApiClient.stop().enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, final IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Stop action failed!",Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         });
