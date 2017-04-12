@@ -1,8 +1,12 @@
 package ust.hk.robottourguidemobileremotecontrol;
 
+import org.json.JSONObject;
+
 import okhttp3.Call;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * Created by tavish on 2/15/17.
@@ -10,8 +14,9 @@ import okhttp3.Request;
 
 public class ApiClient {
 
-    private static final String baseUrl= "10.20.141.114";
+    private static final String baseUrl= "10.89.22.206";
     private static final int port=8000;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static Call moveForward()
     {
@@ -83,5 +88,19 @@ public class ApiClient {
                 .build();
         return OkHttpSingleton.getOkHttpInstance().getOkHttpClient().newCall(request);
     }
-
+    public static Call sendLocation(String location)
+    {
+        HttpUrl httpUrl= new HttpUrl.Builder()
+                .scheme("http")
+                .host(baseUrl)
+                .port(port)
+                .addPathSegment("sendLocation")
+                .build();
+        RequestBody reqBody= RequestBody.create(JSON,location);
+        Request request= new Request.Builder()
+                .post(reqBody)
+                .url(httpUrl)
+                .build();
+        return OkHttpSingleton.getOkHttpInstance().getOkHttpClient().newCall(request);
+    }
 }
